@@ -4,28 +4,19 @@ import numpy as np
 import plotly.express as px
 
 
-# ==========================================================
 # PAGE CONFIGURATION
-# ==========================================================
-
 st.set_page_config(
     page_title="FinSight - Personal Finance",
-    page_icon="💰",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
 
-# ==========================================================
 # CUSTOM CSS
-# ==========================================================
-
 st.markdown("""
 <style>
 
-/* =========================================================
-   APPLICATION
-   ========================================================= */
+/*APPLICATION*/
 
 .stApp {
     background: #f5f7fb;
@@ -37,9 +28,7 @@ st.markdown("""
 }
 
 
-/* =========================================================
-   MAIN HEADER
-   ========================================================= */
+/*MAIN HEADER */
 
 .main-header {
     background: linear-gradient(135deg, #0f172a, #1e3a8a);
@@ -64,9 +53,7 @@ st.markdown("""
 }
 
 
-/* =========================================================
-   SIDEBAR - MODERN FINANCE EXPLORER
-   ========================================================= */
+/* SIDEBAR - MODERN FINANCE EXPLORER */
 
 [data-testid="stSidebar"] {
     background:
@@ -94,9 +81,7 @@ st.markdown("""
 }
 
 
-/* =========================================================
-   SIDEBAR HEADER
-   ========================================================= */
+/* SIDEBAR HEADER */
 
 .finance-header {
     padding: 17px 15px 20px;
@@ -141,9 +126,7 @@ st.markdown("""
 }
 
 
-/* =========================================================
-   FILTER HEADINGS
-   ========================================================= */
+/* FILTER HEADINGS */
 
 .filter-heading {
     display: flex;
@@ -189,9 +172,7 @@ st.markdown("""
 }
 
 
-/* =========================================================
-   MULTISELECT CONTROL
-   ========================================================= */
+/* MULTISELECT CONTROL */
 
 [data-testid="stSidebar"] div[data-baseweb="select"] > div {
     background: rgba(30, 41, 59, 0.82) !important;
@@ -212,9 +193,7 @@ st.markdown("""
 }
 
 
-/* =========================================================
-   SELECTED CHIPS - NO RED
-   ========================================================= */
+/* SELECTED CHIPS - NO RED */
 
 [data-testid="stSidebar"] div[data-baseweb="tag"] {
     background: linear-gradient(135deg, #f1f7ff, #dbeafe) !important;
@@ -239,9 +218,7 @@ st.markdown("""
 }
 
 
-/* =========================================================
-   DROPDOWN MENU
-   ========================================================= */
+/* DROPDOWN MENU */
 
 div[data-baseweb="popover"] {
     background: #111f31 !important;
@@ -273,9 +250,7 @@ div[data-baseweb="popover"] li:hover {
 }
 
 
-/* =========================================================
-   SLIDER
-   ========================================================= */
+/* SLIDER */
 
 [data-testid="stSidebar"] [data-testid="stSlider"] {
     padding: 2px 3px 8px;
@@ -292,9 +267,7 @@ div[data-baseweb="popover"] li:hover {
 }
 
 
-/* =========================================================
-   CHECKBOX
-   ========================================================= */
+/* CHECKBOX */
 
 [data-testid="stSidebar"] [data-testid="stCheckbox"] {
     padding: 12px 7px 7px;
@@ -309,9 +282,7 @@ div[data-baseweb="popover"] li:hover {
 }
 
 
-/* =========================================================
-   DIVIDER
-   ========================================================= */
+/* DIVIDER */
 
 .filter-divider {
     height: 1px;
@@ -320,9 +291,7 @@ div[data-baseweb="popover"] li:hover {
 }
 
 
-/* =========================================================
-   MAIN KPI CARDS
-   ========================================================= */
+/* MAIN KPI CARDS */
 
 .kpi-card {
     background: white;
@@ -348,9 +317,7 @@ div[data-baseweb="popover"] li:hover {
 }
 
 
-/* =========================================================
-   SECTION TITLES
-   ========================================================= */
+/* SECTION TITLES */
 
 .section-title {
     font-size: 24px;
@@ -361,9 +328,7 @@ div[data-baseweb="popover"] li:hover {
 }
 
 
-/* =========================================================
-   FOOTER
-   ========================================================= */
+/* FOOTER */
 
 .footer {
     text-align: center;
@@ -376,10 +341,7 @@ div[data-baseweb="popover"] li:hover {
 """, unsafe_allow_html=True)
 
 
-# ==========================================================
 # LOAD AND CLEAN DATA
-# ==========================================================
-
 @st.cache_data
 def load_data():
     """Load the finance dataset and perform basic cleaning."""
@@ -441,9 +403,7 @@ def load_data():
     return data
 
 
-# ==========================================================
 # DATASET
-# ==========================================================
 
 try:
     df = load_data()
@@ -457,10 +417,7 @@ except ValueError as error:
     st.stop()
 
 
-# ==========================================================
 # MAIN HEADER
-# ==========================================================
-
 st.markdown("""
 <div class="main-header">
     <h1>💰 FinSight</h1>
@@ -470,10 +427,7 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ==========================================================
 # SIDEBAR HEADER
-# ==========================================================
-
 st.sidebar.markdown("""
 <div class="finance-header">
     <div class="finance-header-inner">
@@ -489,10 +443,7 @@ st.sidebar.markdown("""
 """, unsafe_allow_html=True)
 
 
-# ==========================================================
 # CATEGORY FILTER
-# ==========================================================
-
 st.sidebar.markdown("""
 <div class="filter-heading">
     <div class="filter-name">
@@ -517,10 +468,7 @@ selected_categories = st.sidebar.multiselect(
 )
 
 
-# ==========================================================
 # PAYMENT METHOD FILTER
-# ==========================================================
-
 st.sidebar.markdown("""
 <div class="filter-heading">
     <div class="filter-name">
@@ -545,10 +493,7 @@ selected_payment = st.sidebar.multiselect(
 )
 
 
-# ==========================================================
 # LOCATION FILTER
-# ==========================================================
-
 st.sidebar.markdown("""
 <div class="filter-heading">
     <div class="filter-name">
@@ -573,10 +518,7 @@ selected_locations = st.sidebar.multiselect(
 )
 
 
-# ==========================================================
 # TRANSACTION TYPE FILTER
-# ==========================================================
-
 st.sidebar.markdown("""
 <div class="filter-heading">
     <div class="filter-name">
@@ -601,10 +543,7 @@ selected_transaction = st.sidebar.multiselect(
 )
 
 
-# ==========================================================
 # TIME OF DAY FILTER
-# ==========================================================
-
 st.sidebar.markdown("""
 <div class="filter-heading">
     <div class="filter-name">
@@ -629,10 +568,7 @@ selected_time = st.sidebar.multiselect(
 )
 
 
-# ==========================================================
 # AMOUNT RANGE FILTER
-# ==========================================================
-
 st.sidebar.markdown("""
 <div class="filter-heading">
     <div class="filter-name">
@@ -657,10 +593,7 @@ amount_range = st.sidebar.slider(
 )
 
 
-# ==========================================================
 # HIGH EXPENSE FILTER
-# ==========================================================
-
 st.sidebar.markdown(
     '<div class="filter-divider"></div>',
     unsafe_allow_html=True
@@ -672,10 +605,7 @@ high_expenses = st.sidebar.checkbox(
 )
 
 
-# ==========================================================
 # APPLY ALL FILTERS
-# ==========================================================
-
 filtered_df = df[
     df["Category"].isin(selected_categories)
     & df["PaymentMethod"].isin(selected_payment)
@@ -689,10 +619,7 @@ if high_expenses:
     filtered_df = filtered_df[filtered_df["Amount"] > 5000]
 
 
-# ==========================================================
 # NO DATA CHECK
-# ==========================================================
-
 if filtered_df.empty:
     st.warning("No transactions match your selected filters.")
     st.info(
@@ -701,20 +628,14 @@ if filtered_df.empty:
     st.stop()
 
 
-# ==========================================================
 # BASIC CALCULATIONS
-# ==========================================================
-
 total_spending = filtered_df["Amount"].sum()
 transaction_count = len(filtered_df)
 average_transaction = filtered_df["Amount"].mean()
 highest_transaction = filtered_df["Amount"].max()
 
 
-# ==========================================================
 # KPI CARDS
-# ==========================================================
-
 st.markdown(
     '<div class="section-title">📊 Your Spending at a Glance</div>',
     unsafe_allow_html=True
@@ -767,10 +688,7 @@ with col4:
     )
 
 
-# ==========================================================
 # QUICK SUMMARY
-# ==========================================================
-
 st.markdown(
     '<div class="section-title">✨ Quick Summary</div>',
     unsafe_allow_html=True
@@ -821,10 +739,7 @@ with col3:
     )
 
 
-# ==========================================================
 # TABS
-# ==========================================================
-
 overview_tab, transactions_tab, insights_tab = st.tabs(
     [
         "🏠 Overview",
@@ -834,10 +749,7 @@ overview_tab, transactions_tab, insights_tab = st.tabs(
 )
 
 
-# ==========================================================
 # OVERVIEW TAB
-# ==========================================================
-
 with overview_tab:
 
     st.markdown(
@@ -946,10 +858,7 @@ with overview_tab:
     st.plotly_chart(fig, use_container_width=True)
 
 
-# ==========================================================
 # TRANSACTIONS TAB
-# ==========================================================
-
 with transactions_tab:
 
     st.markdown(
@@ -1001,18 +910,15 @@ with transactions_tab:
 
     csv_data = transaction_view.to_csv(index=False).encode("utf-8")
 
-    # st.download_button(
-    #     label="⬇️ Download These Transactions",
-    #     data=csv_data,
-    #     file_name="my_filtered_transactions.csv",
-    #     mime="text/csv"
-    # )
+    st.download_button(
+        label="⬇️ Download These Transactions",
+        data=csv_data,
+        file_name="my_filtered_transactions.csv",
+        mime="text/csv"
+    )
 
 
-# ==========================================================
-# SPENDING INSIGHTS TAB
-# ==========================================================
-
+# SPENDING ISIGHTS TAB
 with insights_tab:
 
     st.markdown(
@@ -1026,7 +932,7 @@ with insights_tab:
 
     col1, col2 = st.columns(2)
 
-    # ---------- TOP CATEGORY ----------
+    # TOP CATEGORY 
     with col1:
         category_data = (
             filtered_df.groupby("Category", as_index=False)["Amount"]
@@ -1051,7 +957,7 @@ with insights_tab:
 
         st.plotly_chart(fig, use_container_width=True)
 
-    # ---------- LOCATION ----------
+    # LOCATION 
     with col2:
         location_data = (
             filtered_df.groupby("Location", as_index=False)["Amount"]
@@ -1074,7 +980,7 @@ with insights_tab:
 
         st.plotly_chart(fig, use_container_width=True)
 
-    # ---------- PAYMENT VS CATEGORY ----------
+    #  PAYMENT VS CATEGORY 
     st.markdown(
         '<div class="section-title">💳 Category vs Payment Method</div>',
         unsafe_allow_html=True
@@ -1104,7 +1010,7 @@ with insights_tab:
 
         st.plotly_chart(fig, use_container_width=True)
 
-    # ---------- SIMPLE TAKEAWAYS ----------
+    # SIMPLE TAKEAWAYS 
     st.markdown(
         '<div class="section-title">💡 Helpful Takeaways</div>',
         unsafe_allow_html=True
@@ -1143,10 +1049,7 @@ with insights_tab:
     )
 
 
-# ==========================================================
 # FOOTER
-# ==========================================================
-
 st.markdown("---")
 
 st.markdown(
